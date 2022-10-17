@@ -4,6 +4,46 @@ import icon_clock from "./../../images/icon_clock.svg";
 import icon_pointer from "./../../images/icon_pointer.svg";
 
 export default function Item() {
+  const scheldure = [
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+    "18:00",
+    "19:00",
+  ];
+  console.log(scheldure[1]);
+  const scheldureRender = (list) => {
+    if (list.length > 4) {
+      return (
+        <ul className="item__scheldure">
+          <li key={list[0]} className="item__scheldure-item">
+            {list[0]}
+          </li>
+          <li key={list[1]} className="item__scheldure-item">
+            {list[1]}
+          </li>
+          <li key={list[2]} className="item__scheldure-item">
+            {list[2]}
+          </li>
+          <button className="item__scheldure-item item__scheldure-button">
+            Eщё...
+          </button>
+        </ul>
+      );
+    } else {
+      return (
+        <ul className="item__scheldure">
+          <li key={list} className="item__scheldure-item">
+            {list}
+          </li>
+        </ul>
+      );
+    }
+  };
+
   return (
     <>
       <li className="item">
@@ -66,16 +106,11 @@ export default function Item() {
               </p>
             </li>
           </ul>
-          <ul className="item__scheldure">
-            <li className="item__scheldure-item">12:00</li>
-            <li className="item__scheldure-item">13:00</li>
-            <li className="item__scheldure-item">14:00</li>
-            <li className="item__scheldure-item">15:00</li>
-          </ul>
+          <ul className="item__scheldure">{scheldureRender(scheldure)}</ul>
           <div className="item__footer">
             <div className="item__price">
               <p className="item__price-promotion">900 &#8381;</p>
-              <p className="item__price-total">1200 на причале</p>
+              <p className="item__price-total">1200 &#8381; на причале</p>
             </div>
             <button className="item__button" type="button">
               Подробнее
@@ -154,7 +189,7 @@ export default function Item() {
           <div className="item__footer">
             <div className="item__price">
               <p className="item__price-promotion">2900 &#8381;</p>
-              <p className="item__price-total">1200 на причале</p>
+              <p className="item__price-total">1200 &#8381; на причале</p>
             </div>
             <button className="item__button" type="button">
               Подробнее
