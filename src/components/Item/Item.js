@@ -95,7 +95,7 @@ export default function Item() {
           <span className="item__header-span item__header-span_blue">
             НОВИНКА
           </span>
-        </div>{" "}
+        </div>
         <div className="item__container">
           <div className="item__duration">
             <img className="item__duration-icon" alt="Часы" src={icon_clock} />
@@ -153,7 +153,7 @@ export default function Item() {
           </ul>
           <div className="item__footer">
             <div className="item__price">
-              <p className="item__price-promotion">900 &#8381;</p>
+              <p className="item__price-promotion">2900 &#8381;</p>
               <p className="item__price-total">1200 на причале</p>
             </div>
             <button className="item__button" type="button">
