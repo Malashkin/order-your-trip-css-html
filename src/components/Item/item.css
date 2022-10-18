@@ -349,7 +349,7 @@
   .item__footer {
     grid-area: price;
     justify-content: left;
-    align-items: baseline;
+    align-items: center;
   }
 }
 
