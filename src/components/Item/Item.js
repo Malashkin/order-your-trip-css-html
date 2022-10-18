@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import cardHeader_img from "./../../images/sankt-peterburg-piter-st-3495.jpg";
 import icon_clock from "./../../images/icon_clock.svg";
 import icon_pointer from "./../../images/icon_pointer.svg";
 
 export default function Item() {
-  const scheldure = [
+  const scheldureFirst = [
     "12:00",
     "13:00",
     "14:00",
@@ -14,32 +14,77 @@ export default function Item() {
     "18:00",
     "19:00",
   ];
-  console.log(scheldure[1]);
+  const scheldureSecond = ["12:00", "13:00", "14:00", "15:00"];
+  const [extraScheldureVisibility, setExtraScheldureVisibility] =
+    useState(false);
+  const openExtraScheldure = () => {
+    setExtraScheldureVisibility(true);
+  };
+  const extraScheldureClassName = extraScheldureVisibility
+    ? "item__scheldure-extra item__scheldure-extra_visible"
+    : "item__scheldure-extra";
+
   const scheldureRender = (list) => {
     if (list.length > 4) {
       return (
-        <ul className="item__scheldure">
-          <li key={list[0]} className="item__scheldure-item">
-            {list[0]}
-          </li>
-          <li key={list[1]} className="item__scheldure-item">
-            {list[1]}
-          </li>
-          <li key={list[2]} className="item__scheldure-item">
-            {list[2]}
-          </li>
-          <button className="item__scheldure-item item__scheldure-button">
-            Eщё...
-          </button>
-        </ul>
+        <>
+          <ul className="item__scheldure">
+            <li key={list[0]} className="item__scheldure-item">
+              {list[0]}
+            </li>
+            <li key={list[1]} className="item__scheldure-item">
+              {list[1]}
+            </li>
+            <li key={list[2]} className="item__scheldure-item">
+              {list[2]}
+            </li>
+            {!extraScheldureVisibility ? (
+              <button
+                className="item__scheldure-item item__scheldure-button"
+                onClick={openExtraScheldure}
+              >
+                Eщё...
+              </button>
+            ) : (
+              <li key={list[3]} className="item__scheldure-item">
+                {list[3]}
+              </li>
+            )}
+          </ul>
+        </>
       );
-    } else {
+    } else if (list.length <= 4) {
       return (
         <ul className="item__scheldure">
-          <li key={list} className="item__scheldure-item">
-            {list}
-          </li>
+          {list.map((item) => {
+            return (
+              <li key={item} className="item__scheldure-item">
+                {item}
+              </li>
+            );
+          })}
         </ul>
+      );
+    }
+  };
+
+  const scheldureExtraRender = (list) => {
+    if (list.length > 4) {
+      return (
+        <>
+          <li key={list[4]} className="item__scheldure-item">
+            {list[4]}
+          </li>
+          <li key={list[5]} className="item__scheldure-item">
+            {list[5]}
+          </li>
+          <li key={list[6]} className="item__scheldure-item">
+            {list[6]}
+          </li>
+          <li key={list[7]} className="item__scheldure-item">
+            {list[7]}
+          </li>
+        </>
       );
     }
   };
@@ -106,7 +151,10 @@ export default function Item() {
               </p>
             </li>
           </ul>
-          <ul className="item__scheldure">{scheldureRender(scheldure)}</ul>
+          <ul className="item__scheldure">{scheldureRender(scheldureFirst)}</ul>
+          <ul className={extraScheldureClassName}>
+            {scheldureExtraRender(scheldureFirst)}
+          </ul>
           <div className="item__footer">
             <div className="item__price">
               <p className="item__price-promotion">900 &#8381;</p>
@@ -126,7 +174,7 @@ export default function Item() {
             className="item__header-image"
             src={cardHeader_img}
             alt="Обложка"
-          ></img>
+          />
           <span className="item__header-span item__header-span_blue">
             НОВИНКА
           </span>
@@ -181,10 +229,10 @@ export default function Item() {
             </li>
           </ul>
           <ul className="item__scheldure">
-            <li className="item__scheldure-item">12:00</li>
-            <li className="item__scheldure-item">13:00</li>
-            <li className="item__scheldure-item">14:00</li>
-            <li className="item__scheldure-item">15:00</li>
+            {scheldureRender(scheldureSecond)}
+          </ul>
+          <ul className={extraScheldureClassName}>
+            {scheldureExtraRender(scheldureSecond)}
           </ul>
           <div className="item__footer">
             <div className="item__price">
